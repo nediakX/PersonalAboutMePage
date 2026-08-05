@@ -87,8 +87,8 @@ const EXPERIENCE = [
     company: 'Centro Paula Souza / Fatec Sebrae · São Paulo, Brasil',
     period: { es: 'Julio 2026 · 65 hrs académicas', en: 'July 2026 · 65 academic hours' },
     desc: {
-      es: 'Seleccionado por INACAP (1 de 4 estudiantes a nivel nacional) para participar en programa internacional dictado en inglés: inmersión cultural, portugués intensivo, formación en IA y Transformación Digital, y visitas técnicas a empresas como Nubank y TOTVS. Certificado oficial del Gobierno del Estado de São Paulo.',
-      en: 'Selected by INACAP (1 of 4 students nationwide) to join an international program taught in English: cultural immersion, intensive Portuguese, AI & Digital Transformation training, and technical visits to companies such as Nubank and TOTVS. Official certificate from the São Paulo State Government.',
+      es: 'Seleccionado por INACAP para participar en programa internacional dictado en inglés: inmersión cultural, portugués intensivo, formación en IA y Transformación Digital, y visitas técnicas a empresas como Nubank y TOTVS. Certificado oficial del Gobierno del Estado de São Paulo.',
+      en: 'Selected by INACAP to join an international program taught in English: cultural immersion, intensive Portuguese, AI & Digital Transformation training, and technical visits to companies such as Nubank and TOTVS. Official certificate from the São Paulo State Government.',
     },
     dot: '#F59E0B',
     featured: true,
