@@ -32,12 +32,21 @@ const C = {
 
 const TR = {
   es: {
-    nav: ['Sobre mí', 'Experiencia', 'Educación', 'Certificaciones', 'Contacto'],
-    navIds: ['about', 'experience', 'education', 'certifications', 'contact'],
+    nav: ['Sobre mí', 'Experiencia', 'Proyectos', 'Educación', 'Certificaciones', 'Habilidades', 'Contacto'],
+    navIds: ['about', 'experience', 'projects', 'education', 'certifications', 'skills', 'contact'],
     available: 'Disponible para trabajar',
-    tagline: 'Ingeniero en Informática · Full Stack Developer · Técnico en Telecomunicaciones',
+    subtitle: 'Ingeniero en Informática · Full Stack Developer · Técnico en Telecomunicaciones',
+    tagline: 'Del cableado y las faenas mineras al código — con paso por São Paulo.',
     aboutTitle: 'Sobre mí',
-    aboutText: 'Ingeniero en Informática y Analista Programador con perfil híbrido que conecta el desarrollo full-stack con la infraestructura de telecomunicaciones. 24 años, Chile — con experiencia real en terreno, resolviendo problemas tanto a nivel de código como de hardware y conectividad, asegurando la continuidad de servicios TI en entornos críticos como la minería. Disponible para trabajar en terreno o de forma remota/internacional.',
+    aboutText: 'Ingeniero en Informática y Analista Programador con perfil híbrido que conecta el desarrollo full-stack con la infraestructura de telecomunicaciones. Tengo experiencia real en terreno, resolviendo problemas tanto a nivel de código como de hardware y conectividad, asegurando la continuidad de servicios TI en entornos críticos como la minería. Disponible para trabajar en terreno o de forma remota/internacional.',
+    projectsTitle: 'Proyectos',
+    projectsIntro: 'Aplicaciones que diseñé y desarrollé de punta a punta, varias de ellas en uso real por equipos en terreno.',
+    demo: 'Ver sitio',
+    code: 'Código',
+    footerKicker: 'hablemos',
+    menu: 'Abrir menú',
+    themeLabel: 'Cambiar tema claro / oscuro',
+    langLabel: 'Switch to English',
     expTitle: 'Experiencia',
     eduTitle: 'Educación',
     certsTitle: 'Certificaciones',
@@ -52,12 +61,21 @@ const TR = {
     skillCats: ['Redes y Telecomunicaciones', 'Infraestructura y Soporte', 'Desarrollo', 'Cloud & IA', 'Seguridad'],
   },
   en: {
-    nav: ['About', 'Experience', 'Education', 'Certifications', 'Contact'],
-    navIds: ['about', 'experience', 'education', 'certifications', 'contact'],
+    nav: ['About', 'Experience', 'Projects', 'Education', 'Certifications', 'Skills', 'Contact'],
+    navIds: ['about', 'experience', 'projects', 'education', 'certifications', 'skills', 'contact'],
     available: 'Available for work',
-    tagline: 'Computer Engineer · Full Stack Developer · Telecommunications Technician',
+    subtitle: 'Computer Engineer · Full Stack Developer · Telecommunications Technician',
+    tagline: 'From cabling and mining sites to code — by way of São Paulo.',
     aboutTitle: 'About Me',
-    aboutText: 'Computer Engineer and Systems Analyst with a hybrid profile bridging full-stack development and telecommunications infrastructure. 24 years old, Chile — with real field experience solving problems at code, hardware, and connectivity levels, ensuring IT service continuity in critical environments like mining operations. Open to on-site or remote/international roles.',
+    aboutText: 'Computer Engineer and Systems Analyst with a hybrid profile bridging full-stack development and telecommunications infrastructure. I bring real field experience solving problems at code, hardware, and connectivity levels, ensuring IT service continuity in critical environments like mining operations. Open to on-site or remote/international roles.',
+    projectsTitle: 'Projects',
+    projectsIntro: 'Applications I designed and built end to end — several of them used daily by field teams.',
+    demo: 'Live site',
+    code: 'Code',
+    footerKicker: "let's talk",
+    menu: 'Open menu',
+    themeLabel: 'Toggle light / dark theme',
+    langLabel: 'Cambiar a español',
     expTitle: 'Experience',
     eduTitle: 'Education',
     certsTitle: 'Certifications',
@@ -154,12 +172,74 @@ const CERTS = [
   { name: 'Intro to Web Development: HTML, CSS, JS', issuer: 'IBM / Coursera' },
 ]
 
-const SKILLS = [
-  { items: ['Red 4G / LTE', 'Radiocomunicación VHF', 'Fibra Óptica', 'CPE Installation', 'Cableado Estructurado'] },
-  { items: ['Data Center', 'Servidores', 'CCTV', 'Technical Support', 'Bases de Datos'] },
-  { items: ['Full Stack Development', 'HTML / CSS / JS', 'Scrum / Agile', 'Git', 'SQL'] },
-  { items: ['AWS Cloud Foundations', 'Arquitectura Cloud', 'Fundamentos de IA'] },
-  { items: ['Ciberseguridad', 'Network Security', 'Ethical Hacking Basics'] },
+type L = { es: string; en: string }
+const same = (s: string): L => ({ es: s, en: s })
+
+const PROJECTS: {
+  name: string; desc: L; tags: string[]; demo?: string; repo: string; accent: string
+}[] = [
+  {
+    name: 'PSINet · Informe Diario',
+    desc: {
+      es: 'Plataforma del equipo LTE de Codelco DSAL para generar informes de turno, cierre semanal, mantenimiento y fallas en Word. Borradores sincronizados en tiempo real, respaldo offline y control de acceso por aprobación de administrador.',
+      en: "Platform used by Codelco DSAL's LTE team to generate shift, weekly, maintenance and failure reports in Word. Real-time synced drafts, offline backup, and admin-approved access control.",
+    },
+    tags: ['React', 'TypeScript', 'Supabase', 'Realtime', 'IndexedDB', 'OpenCV'],
+    demo: 'https://informediario-psinet.vercel.app',
+    repo: 'https://github.com/nediakX/InformeDiario',
+    accent: '#4DD8E8',
+  },
+  {
+    name: 'Informe Eléctrico',
+    desc: {
+      es: 'Asistente paso a paso para inspecciones eléctricas según normativa RIC / DS 8: mediciones, cargas, fotos y firma digital. Exporta informes en Word, PDF y Excel con gráficos, y gestiona cotizaciones y clientes.',
+      en: 'Step-by-step wizard for electrical inspections under Chilean RIC / DS 8 standards: measurements, loads, photos and digital signature. Exports Word, PDF and Excel reports with charts, plus quotes and client management.',
+    },
+    tags: ['React', 'TypeScript', 'Supabase', 'docx', 'jsPDF', 'Leaflet'],
+    demo: 'https://informe-electrico.vercel.app',
+    repo: 'https://github.com/nediakX/InformeElectrico',
+    accent: '#F59E0B',
+  },
+  {
+    name: 'CM Cursos Online',
+    desc: {
+      es: 'Plataforma e-learning para la preparación de la Licencia SEC Clase D + fotovoltaica: 10 módulos, más de 590 preguntas de práctica, simuladores de examen, calculadoras y certificados verificables. Incluye panel de administración y landing editable.',
+      en: 'E-learning platform for the Chilean SEC Class D electrician license + solar: 10 modules, 590+ practice questions, exam simulators, calculators and verifiable certificates. Includes an admin panel and editable landing page.',
+    },
+    tags: ['React', 'TypeScript', 'Neon Postgres', 'Vercel Blob', 'Recharts'],
+    demo: 'https://cm-cursos-online.vercel.app',
+    repo: 'https://github.com/nediakX/CM-Cursos-Online',
+    accent: '#5FE38B',
+  },
+  {
+    name: 'BitaHouse',
+    desc: {
+      es: 'SaaS de administración inmobiliaria con roles para corredora, arrendatarios y propietarios: dashboard financiero, validación de pagos, órdenes de trabajo e incidencias con evidencia.',
+      en: 'Property-management SaaS with roles for brokers, tenants and owners: financial dashboard, payment validation, work orders and incident tracking with evidence.',
+    },
+    tags: ['React', 'TypeScript', 'Supabase', 'Prisma', 'RBAC'],
+    demo: 'https://bitahouse.vercel.app',
+    repo: 'https://github.com/nediakX/Bitahouse',
+    accent: '#A78BFA',
+  },
+  {
+    name: 'CineMidda',
+    desc: {
+      es: 'Sistema de reservas para el cine del Museo Interactivo Digital de Diego de Almagro: cartelera mensual, reservas de usuarios y CRUD de funciones con validación por administrador.',
+      en: 'Booking system for the Diego de Almagro Interactive Digital Museum cinema: monthly listings, user bookings, and admin CRUD and validation of screenings.',
+    },
+    tags: ['Laravel', 'PHP', 'Blade', 'Bootstrap', 'MySQL'],
+    repo: 'https://github.com/nediakX/CineMidda',
+    accent: '#E84040',
+  },
+]
+
+const SKILLS: L[][] = [
+  [{ es: 'Red 4G / LTE', en: '4G / LTE Networks' }, { es: 'Radiocomunicación VHF', en: 'VHF Radio' }, { es: 'Fibra Óptica', en: 'Fiber Optics' }, { es: 'Instalación de CPE', en: 'CPE Installation' }, { es: 'Cableado Estructurado', en: 'Structured Cabling' }],
+  [same('Data Center'), { es: 'Servidores', en: 'Servers' }, same('CCTV'), { es: 'Soporte Técnico', en: 'Technical Support' }, { es: 'Bases de Datos', en: 'Databases' }],
+  [same('React + TypeScript'), same('Supabase / PostgreSQL'), same('HTML / CSS / JS'), same('PHP / Laravel'), same('SQL'), same('Git'), same('Scrum / Agile')],
+  [same('AWS Cloud Foundations'), { es: 'Arquitectura Cloud', en: 'Cloud Architecture' }, same('Vercel'), { es: 'Fundamentos de IA', en: 'AI Fundamentals' }],
+  [{ es: 'Ciberseguridad', en: 'Cybersecurity' }, { es: 'Seguridad de Redes', en: 'Network Security' }],
 ]
 
 const CERT_COLORS: Record<string, string> = {
@@ -241,7 +321,8 @@ function ContactButton({
   const [hov, setHov] = useState(false)
   return (
     <a
-      href={href} target="_blank" rel="noopener noreferrer"
+      href={href}
+      {...(href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
       style={{
         display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
         background: bg, color, border: border ? `1px solid ${border}` : 'none',
@@ -351,9 +432,18 @@ function TimelineConnector({ c }: { c: typeof C.dark }) {
 // ─── Main App ────────────────────────────────────────────────────
 
 export default function App() {
-  const [theme, setTheme] = useState<Theme>('dark')
-  const [lang, setLang] = useState<Lang>('es')
+  const [theme, setTheme] = useState<Theme>(() => {
+    const saved = readPref('wbg-theme')
+    if (saved === 'dark' || saved === 'light') return saved
+    return typeof window !== 'undefined' && window.matchMedia?.('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+  })
+  const [lang, setLang] = useState<Lang>(() => {
+    const saved = readPref('wbg-lang')
+    if (saved === 'es' || saved === 'en') return saved
+    return typeof navigator !== 'undefined' && !navigator.language?.toLowerCase().startsWith('es') ? 'en' : 'es'
+  })
   const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
   const [themeRotating, setThemeRotating] = useState(false)
   const c = C[theme]
   const tr = TR[lang]
@@ -364,6 +454,17 @@ export default function App() {
     return () => window.removeEventListener('scroll', handler)
   }, [])
 
+  useEffect(() => {
+    writePref('wbg-theme', theme)
+    document.documentElement.style.colorScheme = theme
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', c.bg)
+  }, [theme, c.bg])
+
+  useEffect(() => {
+    writePref('wbg-lang', lang)
+    document.documentElement.lang = lang
+  }, [lang])
+
   const toggleTheme = () => {
     setThemeRotating(true)
     setTimeout(() => setThemeRotating(false), 400)
@@ -371,6 +472,7 @@ export default function App() {
   }
 
   const scrollTo = (id: string) => {
+    setMenuOpen(false)
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
 
@@ -380,23 +482,23 @@ export default function App() {
       {/* ── HEADER ─────────────────────────────────────────────── */}
       <header style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
-        background: scrolled ? c.headerBg : 'transparent',
-        backdropFilter: scrolled ? 'blur(20px)' : 'none',
-        borderBottom: scrolled ? `1px solid ${c.border}` : 'none',
+        background: scrolled || menuOpen ? c.headerBg : 'transparent',
+        backdropFilter: scrolled || menuOpen ? 'blur(20px)' : 'none',
+        borderBottom: scrolled || menuOpen ? `1px solid ${c.border}` : 'none',
         transition: 'all 300ms ease',
       }}>
         <div style={{
           maxWidth: 1100, margin: '0 auto', padding: '0 1.5rem',
           height: 62, display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         }}>
-          <span style={{
+          <a href="#hero" aria-label="Williams Barraza Gallardo" style={{
             fontFamily: "'Sora', sans-serif", fontWeight: 800, fontSize: '1rem',
-            color: c.accent1, letterSpacing: '-0.02em', cursor: 'pointer',
-          }} onClick={() => scrollTo('hero')}>
+            color: c.accent1, letterSpacing: '-0.02em', cursor: 'pointer', textDecoration: 'none',
+          }} onClick={e => { e.preventDefault(); scrollTo('hero') }}>
             WBG<span style={{ color: c.accent2 }}>.</span>
-          </span>
+          </a>
 
-          <nav className="desktop-nav" style={{ display: 'flex', gap: '1.25rem', alignItems: 'center' }}>
+          <nav className="desktop-nav" aria-label={lang === 'es' ? 'Secciones' : 'Sections'} style={{ display: 'flex', gap: '1.1rem', alignItems: 'center' }}>
             {tr.nav.slice(0, -1).map((label, i) => (
               <NavLink key={i} label={label} onClick={() => scrollTo(tr.navIds[i])} c={c} />
             ))}
@@ -404,6 +506,7 @@ export default function App() {
 
           <div style={{ display: 'flex', gap: '0.625rem', alignItems: 'center' }}>
             <button
+              aria-label={tr.langLabel}
               onClick={() => setLang(l => (l === 'es' ? 'en' : 'es'))}
               style={{
                 background: c.surface, border: `1px solid ${c.border}`, borderRadius: 20,
@@ -418,6 +521,8 @@ export default function App() {
             </button>
 
             <button
+              aria-label={tr.themeLabel}
+              title={tr.themeLabel}
               onClick={toggleTheme}
               style={{
                 width: 36, height: 36, borderRadius: '50%', display: 'flex',
@@ -429,8 +534,42 @@ export default function App() {
             >
               {theme === 'dark' ? '🌙' : '☀️'}
             </button>
+
+            <button
+              className="mobile-only"
+              aria-label={tr.menu}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
+              onClick={() => setMenuOpen(o => !o)}
+              style={{
+                width: 36, height: 36, borderRadius: 10, alignItems: 'center', justifyContent: 'center',
+                background: c.surface, border: `1px solid ${c.border}`, cursor: 'pointer', color: c.text,
+              }}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+                {menuOpen
+                  ? <path d="M6 6l12 12M18 6L6 18" />
+                  : <path d="M4 7h16M4 12h16M4 17h16" />}
+              </svg>
+            </button>
           </div>
         </div>
+
+        {menuOpen && (
+          <nav id="mobile-menu" className="mobile-only" aria-label={lang === 'es' ? 'Secciones' : 'Sections'} style={{
+            flexDirection: 'column', padding: '0.5rem 1.5rem 1rem', gap: '0.25rem',
+          }}>
+            {tr.nav.map((label, i) => (
+              <button key={i} onClick={() => scrollTo(tr.navIds[i])} style={{
+                background: 'none', border: 'none', textAlign: 'left', cursor: 'pointer',
+                color: c.text, fontSize: '1rem', fontFamily: 'inherit', padding: '0.6rem 0',
+                borderBottom: `1px solid ${c.border}`,
+              }}>
+                {label}
+              </button>
+            ))}
+          </nav>
+        )}
       </header>
 
       {/* ── HERO ───────────────────────────────────────────────── */}
@@ -605,11 +744,36 @@ export default function App() {
         </div>
       </section>
 
-      {/* ── EDUCATION ──────────────────────────────────────────── */}
-      <section id="education" style={{ padding: '5rem 1.5rem' }}>
-        <div style={{ maxWidth: 760, margin: '0 auto' }}>
+      {/* ── PROJECTS ───────────────────────────────────────────── */}
+      <section id="projects" style={{ padding: '5rem 1.5rem' }}>
+        <div style={{ maxWidth: 980, margin: '0 auto' }}>
           <Reveal>
             <SectionTag num="03" c={c} />
+            <h2 style={{
+              fontFamily: "'Sora', sans-serif", fontWeight: 700,
+              fontSize: 'clamp(1.5rem, 3vw, 2.1rem)', letterSpacing: '-0.025em', marginBottom: '0.75rem',
+            }}>
+              {tr.projectsTitle}
+            </h2>
+            <p style={{ color: c.text2, fontSize: '0.95rem', lineHeight: 1.7, maxWidth: 620, marginBottom: '2rem' }}>
+              {tr.projectsIntro}
+            </p>
+          </Reveal>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 290px), 1fr))', gap: '1rem' }}>
+            {PROJECTS.map((p, i) => (
+              <Reveal key={p.name} delay={i * 70}>
+                <ProjectCard p={p} lang={lang} tr={tr} c={c} />
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── EDUCATION ──────────────────────────────────────────── */}
+      <section id="education" style={{ padding: '5rem 1.5rem', background: c.timelineBg, transition: 'background 300ms ease' }}>
+        <div style={{ maxWidth: 760, margin: '0 auto' }}>
+          <Reveal>
+            <SectionTag num="04" c={c} />
             <h2 style={{
               fontFamily: "'Sora', sans-serif", fontWeight: 700,
               fontSize: 'clamp(1.5rem, 3vw, 2.1rem)', letterSpacing: '-0.025em', marginBottom: '2rem',
@@ -628,10 +792,10 @@ export default function App() {
       </section>
 
       {/* ── CERTIFICATIONS ─────────────────────────────────────── */}
-      <section id="certifications" style={{ padding: '5rem 1.5rem', background: c.timelineBg, transition: 'background 300ms ease' }}>
+      <section id="certifications" style={{ padding: '5rem 1.5rem' }}>
         <div style={{ maxWidth: 980, margin: '0 auto' }}>
           <Reveal>
-            <SectionTag num="04" c={c} />
+            <SectionTag num="05" c={c} />
             <h2 style={{
               fontFamily: "'Sora', sans-serif", fontWeight: 700,
               fontSize: 'clamp(1.5rem, 3vw, 2.1rem)', letterSpacing: '-0.025em', marginBottom: '2rem',
@@ -650,10 +814,10 @@ export default function App() {
       </section>
 
       {/* ── SKILLS ─────────────────────────────────────────────── */}
-      <section style={{ padding: '5rem 1.5rem' }}>
+      <section id="skills" style={{ padding: '5rem 1.5rem', background: c.timelineBg, transition: 'background 300ms ease' }}>
         <div style={{ maxWidth: 860, margin: '0 auto' }}>
           <Reveal>
-            <SectionTag num="05" c={c} />
+            <SectionTag num="06" c={c} />
             <h2 style={{
               fontFamily: "'Sora', sans-serif", fontWeight: 700,
               fontSize: 'clamp(1.5rem, 3vw, 2.1rem)', letterSpacing: '-0.025em', marginBottom: '2.25rem',
@@ -672,8 +836,8 @@ export default function App() {
                   {tr.skillCats[i]}
                 </p>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                  {group.items.map((skill, j) => (
-                    <SkillChip key={j} label={skill} accent={i % 2 === 0 ? c.accent1 : c.accent2} c={c} />
+                  {group.map((skill, j) => (
+                    <SkillChip key={j} label={skill[lang]} accent={i % 2 === 0 ? c.accent1 : c.accent2} c={c} />
                   ))}
                 </div>
               </Reveal>
@@ -683,10 +847,10 @@ export default function App() {
       </section>
 
       {/* ── LANGUAGES ──────────────────────────────────────────── */}
-      <section style={{ padding: '3rem 1.5rem', background: c.timelineBg, transition: 'background 300ms ease' }}>
+      <section id="languages" style={{ padding: '3rem 1.5rem 5rem' }}>
         <div style={{ maxWidth: 760, margin: '0 auto' }}>
           <Reveal>
-            <SectionTag num="06" c={c} />
+            <SectionTag num="07" c={c} />
             <h2 style={{
               fontFamily: "'Sora', sans-serif", fontWeight: 700, fontSize: '1.35rem',
               letterSpacing: '-0.02em', marginBottom: '1.25rem',
@@ -709,7 +873,7 @@ export default function App() {
               fontFamily: "'JetBrains Mono', monospace", color: c.accent2,
               fontSize: '0.75rem', marginBottom: '0.75rem', opacity: 0.7,
             }}>
-              // {TR[lang].footerText.split(' ').slice(0, 2).join(' ')}...
+              // {tr.footerKicker}
             </p>
             <h2 style={{
               fontFamily: "'Sora', sans-serif", fontWeight: 800,
@@ -853,6 +1017,61 @@ function EduCard({ edu, lang, label, c }: { edu: typeof EDUCATION[0]; lang: Lang
       </div>
     </div>
   )
+}
+
+function ProjectCard({ p, lang, tr, c }: {
+  p: typeof PROJECTS[0]; lang: Lang; tr: typeof TR.es; c: typeof C.dark
+}) {
+  const linkStyle = (primary: boolean) => ({
+    display: 'inline-flex', alignItems: 'center', gap: '0.35rem',
+    fontSize: '0.8rem', fontWeight: 600, textDecoration: 'none', borderRadius: 8,
+    padding: '0.4rem 0.8rem',
+    color: primary ? '#0F1018' : c.text,
+    background: primary ? p.accent : c.surface2,
+    border: `1px solid ${primary ? p.accent : c.border}`,
+  })
+  return (
+    <article className="lift-card" style={{
+      background: c.surface, border: `1px solid ${c.border}`, borderRadius: 14,
+      padding: '1.35rem 1.4rem', height: '100%', display: 'flex', flexDirection: 'column', gap: '0.75rem',
+      borderTop: `3px solid ${p.accent}`,
+      ['--hover-border' as string]: `${p.accent}66`,
+      ['--hover-shadow' as string]: `0 10px 28px ${p.accent}1F`,
+    }}>
+      <h3 style={{ fontFamily: "'Sora', sans-serif", fontWeight: 700, fontSize: '1.02rem', color: c.text }}>
+        {p.name}
+      </h3>
+      <p style={{ fontSize: '0.86rem', color: c.text2, lineHeight: 1.65, flex: 1 }}>{p.desc[lang]}</p>
+      <ul style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem', listStyle: 'none' }}>
+        {p.tags.map(t => (
+          <li key={t} style={{
+            fontFamily: "'JetBrains Mono', monospace", fontSize: '0.66rem', color: p.accent,
+            background: `${p.accent}14`, border: `1px solid ${p.accent}33`, borderRadius: 6, padding: '2px 7px',
+          }}>{t}</li>
+        ))}
+      </ul>
+      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: '0.25rem' }}>
+        {p.demo && (
+          <a href={p.demo} target="_blank" rel="noopener noreferrer" style={linkStyle(true)}>
+            {tr.demo} <span aria-hidden="true">↗</span>
+          </a>
+        )}
+        <a href={p.repo} target="_blank" rel="noopener noreferrer" style={linkStyle(false)}>
+          <GithubIcon c={c} /> {tr.code}
+        </a>
+      </div>
+    </article>
+  )
+}
+
+// ─── Preferences (safe localStorage) ─────────────────────────────
+
+function readPref(key: string): string | null {
+  try { return window.localStorage.getItem(key) } catch { return null }
+}
+
+function writePref(key: string, value: string) {
+  try { window.localStorage.setItem(key, value) } catch { /* ignore */ }
 }
 
 // ─── Icon components ─────────────────────────────────────────────

@@ -1,7 +1,9 @@
 {
-  "description": "Create a professional portfolio landing page tailored for IT engineers, featuring bilingual support, dark/light mode, and engaging animations to attract recruiters.",
+  "title": "Williams Barraza Gallardo · Ingeniero en Informática y Telecomunicaciones",
+  "language": "es",
+  "description": "Ingeniero en Informática, desarrollador Full Stack y técnico en telecomunicaciones con experiencia en minería (LTE 4G, fibra óptica, data center). Proyectos, experiencia y certificaciones.",
   "robots": {
-    "index": false
+    "index": true
   },
   "accessibility": {
     "addBypassLinks": false,
